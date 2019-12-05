@@ -1,0 +1,18 @@
+body {
+  font-family: 'Roboto';
+  color: #333;
+  background-color: #F9F7EB;
+}
+
+#title {
+    font-family: 'Merriweather';
+    text-align: center;
+    padding: 30px;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: #333;
+  }
+
+  #chart-wrapper {
+    height: 1000px;
+  }

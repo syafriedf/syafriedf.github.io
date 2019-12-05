@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Jumlah Penjualan Mobil Berdasarkan Merk</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script>
+            
+            Chart.defaults.global.defaultFontFamily = 'Roboto';
+            Chart.defaults.global.defaultFontColor = '#333';
+
+            function makeChart(make) {
+
+                var MakeLabels = make.map(function(d) {return d.Make});
+                var QuantityData = make.map(function(d) {return +d.Quantity});
+
+                var chart = new Chart('chart', {
+                    type: 'pie',
+                    options: {
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false,
+                        },
+                        scales: {
+                            xAxes: [
+                            {
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: 'Item Sold',
+                                    fontSize: 16
+                                }
+                            }
+                            ]
+                        }
+                    },
+                    data: {
+                        labels: MakeLabels,
+                        datasets: [
+                            {
+                                label: 'Item Sold',
+                                data: QuantityData,
+                                borderColor: 'rgb(75, 192, 192)',
+                                borderWidth: 1,
+                            }
+                        ]
+                    }
+                })
+            }
+
+            d3.csv('data_country.csv')
+                .then(makeChart);
+                
+        </script>
+    </head>
+    <body>
+        <div id="title">Jumlah Penjualan Mobil Berdasarkan Merk</div>
+        <div id="chart-wrapper">
+            <canvas id="chart"></canvas>
+        </div>
+    </body>
+</html>
